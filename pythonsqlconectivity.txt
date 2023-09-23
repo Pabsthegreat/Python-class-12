@@ -1,0 +1,64 @@
+import mysql as m
+#understanding connection
+
+con = m.conmect(host = 'localhost',user = 'root',passwd = 'root',db = 'adarsh')
+print(con)  #prints object name
+con.close()
+
+#establish a connection
+try:
+    con = m.connect(host = 'localhost',user = 'root',passwd = 'root',db = 'adarsh')
+    try:
+        if con.is_connected():
+            print("connection established")
+        else:
+            print("connection to database not established")
+    except:
+        pass
+except m.error as e:
+    print(e)
+else:
+    con.close()
+
+#execute a sql query and display value
+
+try:
+    con = m.connect(....) as m 
+    if con.is_connected():
+        mycursor = con.cursor()
+        sql1 = 'select * ...'
+        mycursor.execute(sql1)
+        con.commit() # for manipulation statement
+        while True:
+            result = mycursor.fetchone() / fetchmany(next n no. of rows),print(Result) /fetchall() 
+            if not result:                  #at end returns None                        #returns empty list at the end
+                False
+            print("Row:",result)
+except m.Error as e:
+    print(e)
+else:
+    con.close()
+
+
+mycursor.description - list of coulmn names and description
+        .columnname - tuple of column names
+        .statement- executed sql Query
+        .rowcount - no .of rown affected by the ddl 
+        .with_rows - returns bool if exec statement returned any rows
+
+x= input
+y = input --- "%A"
+sql1 = select from ...where age > %s and firstname like %s
+mycursor.exec(sql1,(x,y))
+sql1 = select from ...where age > {} and firstname like {}.format(x,y)
+sql1 = select from ...where age > {0} and firstname like {1}.format(x,y)
+sql1 = select from ...where age > {st_age} and firstname like {st_name}.format(st_age = x,st_name = y)
+sql1 = select from ...where age > {x} and firstname like {y}
+mycursor.exec(sql1)
+
+#executemany
+sql = insert into students(sid,name......)
+values(%s,s,.....)
+
+val = [[val1],[val2],....]
+mycursor.executemamy(sql,val)
